@@ -16,7 +16,7 @@ export default class Game extends Phaser.Scene {
 
   create() {
     const map = this.make.tilemap({ key: 'dungeon' });
-    const tileset = map.addTilesetImage('dungeon', 'tiles');
+    const tileset = map.addTilesetImage('dungeon', 'tiles', 16, 16);
 
     map.createStaticLayer('Ground', tileset);
     const wallsLayer = map.createStaticLayer('Walls', tileset);
@@ -72,6 +72,8 @@ export default class Game extends Phaser.Scene {
     this.faune.anims.play('faune-idle-down');
 
     this.physics.add.collider(this.faune, wallsLayer);
+
+    this.cameras.main.startFollow(this.faune, true);
   }
 
   update(t: number, dt: number) {
