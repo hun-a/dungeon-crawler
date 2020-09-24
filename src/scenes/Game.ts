@@ -2,11 +2,16 @@ import Phaser from 'phaser'
 
 export default class Game extends Phaser.Scene {
 
+  private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
+
+  private faune!: Phaser.Physics.Arcade.Sprite;
+
   constructor() {
     super('game')
   }
 
   preload() {
+    this.cursors = this.input.keyboard.createCursorKeys();
   }
 
   create() {
@@ -25,7 +30,7 @@ export default class Game extends Phaser.Scene {
       faceColor: new Phaser.Display.Color(40, 39, 37, 255),
     });
 
-    const faune = this.add.sprite(128, 128, 'faune', 'walk-down-3.png');
+    this.faune = this.physics.add.sprite(128, 128, 'faune', 'walk-down-3.png');
 
     this.anims.create({
       key: 'faune-idle-down',
@@ -63,6 +68,32 @@ export default class Game extends Phaser.Scene {
       frameRate: 15
     });
 
-    faune.anims.play('faune-idle-down');
+    this.faune.anims.play('faune-idle-down');
+  }
+
+  update(t: number, dt: number) {
+    if (!this.cursors || !this.faune) {
+      return;
+    }
+
+    const speed = 100;
+    if (this.cursors.left?.isDown) {
+      this.faune.anims.play('faune-run-side', true);
+      this.faune.setVelocity(-speed, 0);
+      this.faune.scaleX = -1;
+    } else if (this.cursors.right?.isDown) {
+      this.faune.anims.play('faune-run-side', true);
+      this.faune.setVelocity(speed, 0);
+      this.faune.scaleX = 1;
+    } else if (this.cursors.up?.isDown) {
+      this.faune.anims.play('faune-run-up', true);
+      this.faune.setVelocity(0, -speed);
+    } else if (this.cursors.down?.isDown) {
+      this.faune.anims.play('faune-run-down', true);
+      this.faune.setVelocity(0, speed);
+    } else {
+      this.faune.anims.play('faune-idle-down');
+      this.faune.setVelocity(0, 0);
+    }
   }
 }
