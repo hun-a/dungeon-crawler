@@ -101,7 +101,9 @@ export default class Game extends Phaser.Scene {
       this.faune.anims.play('faune-run-down', true);
       this.faune.setVelocity(0, speed);
     } else {
-      this.faune.anims.play('faune-idle-down');
+      const parts = this.faune.anims.currentAnim.key.split('-');
+      parts[1] = 'idle';
+      this.faune.anims.play(parts.join('-'));
       this.faune.setVelocity(0, 0);
     }
   }
