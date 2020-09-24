@@ -31,6 +31,7 @@ export default class Game extends Phaser.Scene {
     });
 
     this.faune = this.physics.add.sprite(128, 128, 'faune', 'walk-down-3.png');
+    this.faune.body.setSize(this.faune.width * 0.5, this.faune.height * 0.8);
 
     this.anims.create({
       key: 'faune-idle-down',
@@ -69,6 +70,8 @@ export default class Game extends Phaser.Scene {
     });
 
     this.faune.anims.play('faune-idle-down');
+
+    this.physics.add.collider(this.faune, wallsLayer);
   }
 
   update(t: number, dt: number) {
@@ -80,11 +83,15 @@ export default class Game extends Phaser.Scene {
     if (this.cursors.left?.isDown) {
       this.faune.anims.play('faune-run-side', true);
       this.faune.setVelocity(-speed, 0);
+
       this.faune.scaleX = -1;
+      this.faune.body.offset.x = 24;
     } else if (this.cursors.right?.isDown) {
       this.faune.anims.play('faune-run-side', true);
       this.faune.setVelocity(speed, 0);
+
       this.faune.scaleX = 1;
+      this.faune.body.offset.x = 8;
     } else if (this.cursors.up?.isDown) {
       this.faune.anims.play('faune-run-up', true);
       this.faune.setVelocity(0, -speed);
