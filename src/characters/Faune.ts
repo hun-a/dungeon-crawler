@@ -20,7 +20,14 @@ enum HealthState {
 
 export default class Faune extends Phaser.Physics.Arcade.Sprite {
   private healthState = HealthState.IDLE;
+
   private damageTime = 0;
+
+  private _health = 3;
+
+  get health() {
+    return this._health;
+  }
 
   constructor(
     scene: Phaser.Scene,
@@ -35,6 +42,10 @@ export default class Faune extends Phaser.Physics.Arcade.Sprite {
   }
 
   handleDamage(dir: Phaser.Math.Vector2) {
+    if (this._health <= 0) {
+      return;
+    }
+
     if (this.healthState === HealthState.DAMAGE) {
       return;
     }
@@ -45,6 +56,12 @@ export default class Faune extends Phaser.Physics.Arcade.Sprite {
 
     this.healthState = HealthState.DAMAGE;
     this.damageTime = 0;
+
+    --this._health;
+
+    if (this._health <= 0) {
+      // TODO: die
+    }
   }
 
   preUpdate(t: number, dt: number) {
