@@ -14,6 +14,8 @@ export default class Game extends Phaser.Scene {
 
   private faune!: Faune;
 
+  private playerLizardsCollider?: Phaser.Physics.Arcade.Collider;
+
   constructor() {
     super("game");
   }
@@ -55,7 +57,7 @@ export default class Game extends Phaser.Scene {
     this.physics.add.collider(this.faune, wallsLayer);
     this.physics.add.collider(lizards, wallsLayer);
 
-    this.physics.add.collider(
+    this.playerLizardsCollider = this.physics.add.collider(
       lizards,
       this.faune,
       this.handlePlayerLizardCollision,
@@ -78,6 +80,10 @@ export default class Game extends Phaser.Scene {
     this.faune.handleDamage(dir);
 
     sceneEvent.emit("player-health-changed", this.faune.health);
+
+    if (this.faune.health <= 0) {
+      this.playerLizardsCollider?.destroy();
+    }
   }
 
   update(t: number, dt: number) {

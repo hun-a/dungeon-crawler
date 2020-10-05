@@ -16,6 +16,7 @@ declare global {
 enum HealthState {
   IDLE,
   DAMAGE,
+  DEAD,
 }
 
 export default class Faune extends Phaser.Physics.Arcade.Sprite {
@@ -50,17 +51,19 @@ export default class Faune extends Phaser.Physics.Arcade.Sprite {
       return;
     }
 
-    this.setVelocity(dir.x, dir.y);
-
-    this.setTint(0xff0000);
-
-    this.healthState = HealthState.DAMAGE;
-    this.damageTime = 0;
-
     --this._health;
 
     if (this._health <= 0) {
-      // TODO: die
+      this.healthState = HealthState.DEAD;
+      this.anims.play("faune-faint");
+      this.setVelocity(0, 0);
+    } else {
+      this.setVelocity(dir.x, dir.y);
+
+      this.setTint(0xff0000);
+
+      this.healthState = HealthState.DAMAGE;
+      this.damageTime = 0;
     }
   }
 
@@ -81,7 +84,10 @@ export default class Faune extends Phaser.Physics.Arcade.Sprite {
   }
 
   update(cursors: Phaser.Types.Input.Keyboard.CursorKeys) {
-    if (this.healthState === HealthState.DAMAGE) {
+    if (
+      this.healthState === HealthState.DAMAGE ||
+      this.healthState === HealthState.DEAD
+    ) {
       return;
     }
 
