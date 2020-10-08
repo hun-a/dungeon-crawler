@@ -82,7 +82,7 @@ export default class Game extends Phaser.Scene {
     lizardsLayer.objects.forEach((lizObj) => {
       this.lizards.get(
         lizObj.x! + lizObj.width! * 0.5,
-        lizObj.y! + lizObj.height! * 0.5,
+        lizObj.y! - lizObj.height! * 0.5,
         "lizard"
       );
     });
