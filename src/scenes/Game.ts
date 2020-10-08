@@ -117,7 +117,7 @@ export default class Game extends Phaser.Scene {
       this.lizards,
       this.faune,
       this.handlePlayerLizardCollision,
-      undefined,
+      this.processPlayerLizardCollision,
       this
     );
   }
@@ -134,7 +134,7 @@ export default class Game extends Phaser.Scene {
     obj1: Phaser.GameObjects.GameObject,
     obj2: Phaser.GameObjects.GameObject
   ) {
-    this.knives.killAndHide(obj1);
+    obj1.destroy();
   }
 
   private handleKnifeLizardCollision(
@@ -163,6 +163,14 @@ export default class Game extends Phaser.Scene {
     if (this.faune.health <= 0) {
       this.playerLizardsCollider?.destroy();
     }
+  }
+
+  private processPlayerLizardCollision(
+    obj1: Phaser.GameObjects.GameObject,
+    obj2: Phaser.GameObjects.GameObject
+  ) {
+    const lizard = obj2 as Lizard;
+    return lizard.active;
   }
 
   update(t: number, dt: number) {
