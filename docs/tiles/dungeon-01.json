@@ -33,9 +33,127 @@
          "width":100,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":3,
+         "name":"Chests",
+         "objects":[
+                {
+                 "gid":59,
+                 "height":16,
+                 "id":2,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":225.5,
+                 "y":46
+                }, 
+                {
+                 "gid":59,
+                 "height":16,
+                 "id":3,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":881,
+                 "y":176
+                }, 
+                {
+                 "gid":59,
+                 "height":16,
+                 "id":5,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1126.5,
+                 "y":238.5
+                }, 
+                {
+                 "gid":59,
+                 "height":16,
+                 "id":6,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":144,
+                 "y":348.5
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":4,
+         "name":"Lizards",
+         "objects":[
+                {
+                 "gid":79,
+                 "height":16,
+                 "id":10,
+                 "name":"lizard1",
+                 "rotation":0,
+                 "type":"lizard",
+                 "visible":true,
+                 "width":16,
+                 "x":288.5,
+                 "y":163.5
+                }, 
+                {
+                 "gid":79,
+                 "height":16,
+                 "id":11,
+                 "name":"lizard2",
+                 "rotation":0,
+                 "type":"lizard",
+                 "visible":true,
+                 "width":16,
+                 "x":100.5,
+                 "y":509.5
+                }, 
+                {
+                 "gid":79,
+                 "height":16,
+                 "id":12,
+                 "name":"lizard3",
+                 "rotation":0,
+                 "type":"lizard",
+                 "visible":true,
+                 "width":16,
+                 "x":762,
+                 "y":245
+                }, 
+                {
+                 "gid":79,
+                 "height":16,
+                 "id":13,
+                 "name":"lizard4",
+                 "rotation":0,
+                 "type":"lizard",
+                 "visible":true,
+                 "width":16,
+                 "x":1277,
+                 "y":185
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":3,
- "nextobjectid":1,
+ "nextlayerid":5,
+ "nextobjectid":14,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",
@@ -743,7 +861,7 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }]
                 }, 
                 {
@@ -824,7 +942,7 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }]
                 }, 
                 {
@@ -833,7 +951,7 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }]
                 }, 
                 {
