@@ -44,6 +44,7 @@ export default class Game extends Phaser.Scene {
 
     this.knives = this.physics.add.group({
       classType: Phaser.Physics.Arcade.Image,
+      maxSize: 3,
     });
 
     const wallsLayer = map.createStaticLayer("Walls", tileset);
